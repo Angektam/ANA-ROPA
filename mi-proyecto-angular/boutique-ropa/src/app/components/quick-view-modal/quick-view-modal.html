@@ -1,0 +1,188 @@
+<div class="quick-view-modal" *ngIf="isOpen" (click)="onBackdropClick($event)">
+  <div class="modal-content" *ngIf="product">
+    <button class="modal-close" (click)="closeModal()">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <div class="modal-body">
+      <!-- Galería de Imágenes -->
+      <div class="image-gallery">
+        <div class="main-image">
+          <img [src]="getImages()[selectedImageIndex]" [alt]="product.name" />
+          
+          <!-- Badges -->
+          <div class="product-badges">
+            <span class="badge badge-new" *ngIf="product.isNew">Nuevo</span>
+            <span class="badge badge-sale" *ngIf="product.originalPrice">
+              -{{ getDiscountPercentage() }}%
+            </span>
+          </div>
+
+          <!-- Botón Wishlist -->
+          <button 
+            class="wishlist-btn" 
+            [class.active]="isInWishlist()"
+            (click)="toggleWishlist()"
+          >
+            <i class="fas fa-heart"></i>
+          </button>
+        </div>
+
+        <div class="image-thumbnails" *ngIf="getImages().length > 1">
+          <div 
+            *ngFor="let img of getImages(); let i = index"
+            class="thumbnail"
+            [class.active]="i === selectedImageIndex"
+            (click)="selectImage(i)"
+          >
+            <img [src]="img" [alt]="product.name" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Información del Producto -->
+      <div class="product-info">
+        <div class="product-header">
+          <h2 class="product-title">{{ product.name }}</h2>
+          <div class="product-rating">
+            <div class="stars">
+              <i 
+                *ngFor="let star of [1,2,3,4,5]" 
+                class="fas fa-star"
+                [class.filled]="star <= Math.floor(product.rating)"
+              ></i>
+            </div>
+            <span class="rating-text">{{ product.rating }} ({{ product.reviews || 0 }} reseñas)</span>
+          </div>
+        </div>
+
+        <div class="product-price">
+          <span class="current-price">${{ product.price.toFixed(2) }}</span>
+          <span class="original-price" *ngIf="product.originalPrice">
+            ${{ product.originalPrice.toFixed(2) }}
+          </span>
+        </div>
+
+        <p class="product-description">{{ product.description }}</p>
+
+        <!-- Stock -->
+        <div class="stock-info" [class.low-stock]="product.stock < 5">
+          <i class="fas fa-box"></i>
+          <span *ngIf="product.stock > 0">{{ product.stock }} disponibles</span>
+          <span *ngIf="product.stock === 0" class="out-of-stock">Sin stock</span>
+        </div>
+
+        <!-- Marca -->
+        <div class="product-brand" *ngIf="product.brand">
+          <i class="fas fa-tag"></i>
+          <span>Marca: <strong>{{ product.brand }}</strong></span>
+        </div>
+
+        <!-- Selección de Talla -->
+        <div class="size-selector" *ngIf="product.size.length > 0">
+          <label class="selector-label">
+            <i class="fas fa-ruler"></i>
+            Talla
+          </label>
+          <div class="size-options">
+            <label 
+              *ngFor="let size of product.size"
+              class="size-option"
+              [class.selected]="selectedSize === size.name"
+              [class.disabled]="!size.available"
+            >
+              <input 
+                type="radio" 
+                [value]="size.name"
+                [(ngModel)]="selectedSize"
+                [disabled]="!size.available"
+              />
+              <span>{{ size.name }}</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Selección de Color -->
+        <div class="color-selector" *ngIf="product.color.length > 0">
+          <label class="selector-label">
+            <i class="fas fa-palette"></i>
+            Color
+          </label>
+          <div class="color-options">
+            <label 
+              *ngFor="let color of product.color"
+              class="color-option"
+              [class.selected]="selectedColor === color"
+              [title]="color"
+            >
+              <input 
+                type="radio" 
+                [value]="color"
+                [(ngModel)]="selectedColor"
+              />
+              <span 
+                class="color-circle"
+                [ngClass]="color.toLowerCase().replace(' ', '-')"
+              ></span>
+              <span class="color-name">{{ color }}</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Cantidad -->
+        <div class="quantity-selector">
+          <label class="selector-label">
+            <i class="fas fa-shopping-bag"></i>
+            Cantidad
+          </label>
+          <div class="quantity-controls">
+            <button 
+              class="qty-btn" 
+              (click)="decrementQuantity()"
+              [disabled]="quantity <= 1"
+            >
+              <i class="fas fa-minus"></i>
+            </button>
+            <input 
+              type="number" 
+              class="qty-input"
+              [(ngModel)]="quantity"
+              [min]="1"
+              [max]="product.stock"
+            />
+            <button 
+              class="qty-btn" 
+              (click)="incrementQuantity()"
+              [disabled]="quantity >= product.stock"
+            >
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Botón Añadir al Carrito -->
+        <button 
+          class="btn-add-to-cart"
+          (click)="addToCart()"
+          [disabled]="product.stock === 0"
+        >
+          <i class="fas fa-shopping-cart"></i>
+          <span *ngIf="product.stock > 0">Añadir al Carrito</span>
+          <span *ngIf="product.stock === 0">Sin Stock</span>
+        </button>
+
+        <!-- Características -->
+        <div class="product-features" *ngIf="product.tags && product.tags.length > 0">
+          <h4>Características</h4>
+          <div class="tags">
+            <span class="tag" *ngFor="let tag of product.tags">
+              <i class="fas fa-check"></i>
+              {{ tag }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

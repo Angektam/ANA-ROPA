@@ -1,0 +1,198 @@
+// Estilos específicos para el registro (extiende los estilos de login)
+.auth-container {
+  .auth-form {
+    .password-strength {
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      .strength-bar {
+        flex: 1;
+        height: 4px;
+        background: var(--border-color);
+        border-radius: 2px;
+        overflow: hidden;
+
+        .strength-fill {
+          height: 100%;
+          border-radius: 2px;
+          transition: all var(--transition-fast);
+          width: 0%;
+
+          &.strength-weak {
+            width: 25%;
+            background: var(--error-color);
+          }
+
+          &.strength-fair {
+            width: 50%;
+            background: var(--warning-color);
+          }
+
+          &.strength-good {
+            width: 75%;
+            background: #ffc107;
+          }
+
+          &.strength-strong {
+            width: 100%;
+            background: var(--success-color);
+          }
+        }
+      }
+
+      .strength-text {
+        font-size: 0.8rem;
+        font-weight: 600;
+        min-width: 50px;
+
+        &.strength-weak {
+          color: var(--error-color);
+        }
+
+        &.strength-fair {
+          color: var(--warning-color);
+        }
+
+        &.strength-good {
+          color: #ffc107;
+        }
+
+        &.strength-strong {
+          color: var(--success-color);
+        }
+      }
+    }
+
+    .password-match {
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+
+      i {
+        font-size: 0.9rem;
+      }
+
+      .text-success {
+        color: var(--success-color);
+      }
+
+      .text-error {
+        color: var(--error-color);
+      }
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--text-color);
+      line-height: 1.4;
+
+      input[type="checkbox"] {
+        display: none;
+      }
+
+      .checkmark {
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--border-color);
+        border-radius: 4px;
+        position: relative;
+        transition: all var(--transition-fast);
+        flex-shrink: 0;
+        margin-top: 2px;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 5px;
+          top: 2px;
+          width: 4px;
+          height: 8px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+          opacity: 0;
+          transition: opacity var(--transition-fast);
+        }
+      }
+
+      input[type="checkbox"]:checked + .checkmark {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+
+        &::after {
+          opacity: 1;
+        }
+      }
+
+      .checkbox-label {
+        .terms-link {
+          color: var(--primary-color);
+          text-decoration: none;
+          font-weight: 600;
+          transition: all var(--transition-fast);
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .btn-submit {
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// Responsive adjustments for register form
+@media (max-width: 768px) {
+  .auth-container {
+    .auth-form {
+      .password-strength {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+
+        .strength-text {
+          min-width: auto;
+        }
+      }
+
+      .checkbox-container {
+        align-items: flex-start;
+
+        .checkbox-label {
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    .auth-form {
+      .password-strength {
+        .strength-text {
+          font-size: 0.75rem;
+        }
+      }
+
+      .password-match {
+        font-size: 0.75rem;
+      }
+    }
+  }
+}

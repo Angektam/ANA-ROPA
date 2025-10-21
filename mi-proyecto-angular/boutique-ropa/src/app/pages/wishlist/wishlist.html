@@ -1,0 +1,211 @@
+<div class="wishlist-page">
+  <!-- Hero Section -->
+  <div class="wishlist-hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <i class="fas fa-heart"></i>
+          <span>Lista de Deseos</span>
+        </div>
+        <h1 class="hero-title">Tu Selección de Favoritos</h1>
+        <p class="hero-subtitle" *ngIf="wishlistItems.length > 0">
+          {{ getTotalItems() }} {{ getTotalItems() === 1 ? 'artículo' : 'artículos' }} guardados para más tarde
+        </p>
+        <p class="hero-subtitle" *ngIf="wishlistItems.length === 0">
+          Guarda tus productos favoritos para comprarlos más tarde
+        </p>
+      </div>
+      <div class="hero-image">
+        <div class="hero-decoration">
+          <i class="fas fa-heart"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Loading State -->
+    <div class="loading-container" *ngIf="isLoading">
+      <div class="loading-spinner">
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+      </div>
+      <p class="loading-text">Cargando tu lista de deseos...</p>
+    </div>
+
+    <!-- Empty Wishlist -->
+    <div class="empty-wishlist-container" *ngIf="!isLoading && wishlistItems.length === 0">
+      <div class="empty-wishlist-content">
+        <div class="empty-wishlist-icon">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h2 class="empty-wishlist-title">Tu lista de deseos está vacía</h2>
+        <p class="empty-wishlist-description">
+          ¡Explora nuestra colección y guarda tus productos favoritos!
+        </p>
+        <div class="empty-wishlist-actions">
+          <button class="btn-primary" (click)="goToCatalog()">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Explorar Catálogo</span>
+          </button>
+          <button class="btn-secondary" (click)="goToCatalog()">
+            <i class="fas fa-home"></i>
+            <span>Volver al Inicio</span>
+          </button>
+        </div>
+        <div class="empty-wishlist-features">
+          <div class="feature-item">
+            <i class="fas fa-heart"></i>
+            <span>Guarda favoritos</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-bell"></i>
+            <span>Notificaciones de precio</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-share"></i>
+            <span>Compartir lista</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wishlist Content -->
+    <div class="wishlist-content" *ngIf="!isLoading && wishlistItems.length > 0">
+      <div class="wishlist-header">
+        <div class="wishlist-info">
+          <h2 class="wishlist-title">
+            <i class="fas fa-heart"></i>
+            Mi Lista de Deseos
+          </h2>
+          <div class="wishlist-stats">
+            <span class="items-count">{{ getTotalItems() }} {{ getTotalItems() === 1 ? 'artículo' : 'artículos' }}</span>
+            <span class="total-value">Valor total: ${{ getTotalValue() | number:'1.2-2' }}</span>
+          </div>
+        </div>
+        
+        <div class="wishlist-actions">
+          <button class="btn-clear-all" (click)="clearWishlist()">
+            <i class="fas fa-trash"></i>
+            <span>Vaciar Lista</span>
+          </button>
+          <button class="btn-share">
+            <i class="fas fa-share"></i>
+            <span>Compartir</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="wishlist-grid">
+        <div class="wishlist-item" *ngFor="let item of wishlistItems">
+          <div class="item-image">
+            <img [src]="item.product?.image" [alt]="item.product?.name" (click)="goToProduct(item.productId)">
+            <div class="item-badges">
+              <span class="badge-new" *ngIf="item.product?.isNew">
+                <i class="fas fa-sparkles"></i>
+                Nuevo
+              </span>
+              <span class="badge-sale" *ngIf="item.product?.originalPrice">
+                <i class="fas fa-tag"></i>
+                Oferta
+              </span>
+            </div>
+            <button 
+              class="btn-remove" 
+              (click)="removeFromWishlist(item.productId)"
+              title="Eliminar de la lista de deseos">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          
+          <div class="item-details">
+            <h3 class="item-name" (click)="goToProduct(item.productId)">
+              {{ item.product?.name }}
+            </h3>
+            
+            <p class="item-category">
+              <i class="fas fa-tag"></i>
+              {{ item.product?.category?.name || 'Sin categoría' }}
+            </p>
+            
+            <div class="item-rating" *ngIf="item.product?.rating">
+              <div class="stars">
+                <i *ngFor="let star of getStars(item.product?.rating || 0)" [class]="star"></i>
+              </div>
+              <span class="rating-text">({{ item.product?.reviews || 0 }})</span>
+            </div>
+            
+            <div class="item-price">
+              <span class="current-price">${{ item.product?.price | number:'1.2-2' }}</span>
+              <span class="original-price" *ngIf="item.product?.originalPrice">
+                ${{ item.product?.originalPrice | number:'1.2-2' }}
+              </span>
+              <span class="savings" *ngIf="item.product?.originalPrice">
+                Ahorras ${{ ((item.product?.originalPrice || 0) - (item.product?.price || 0)) | number:'1.2-2' }}
+              </span>
+            </div>
+
+            <div class="item-stock" [class]="getStockClass(item.product?.stock || 0)">
+              <i class="fas" [class]="getStockIcon(item.product?.stock || 0)"></i>
+              <span>{{ getStockText(item.product?.stock || 0) }}</span>
+            </div>
+          </div>
+
+          <div class="item-actions">
+            <button 
+              class="btn-add-cart" 
+              (click)="moveToCart(item)"
+              [disabled]="!item.product || item.product.stock === 0">
+              <i class="fas fa-shopping-cart"></i>
+              <span>Agregar al Carrito</span>
+            </button>
+            
+            <button 
+              class="btn-view-product" 
+              (click)="goToProduct(item.productId)">
+              <i class="fas fa-eye"></i>
+              <span>Ver Producto</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <div class="action-card">
+          <div class="action-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <div class="action-content">
+            <h3>Notificaciones de Precio</h3>
+            <p>Te avisaremos cuando bajen los precios de tus productos favoritos</p>
+            <button class="btn-action">Activar Notificaciones</button>
+          </div>
+        </div>
+        
+        <div class="action-card">
+          <div class="action-icon">
+            <i class="fas fa-share"></i>
+          </div>
+          <div class="action-content">
+            <h3>Compartir Lista</h3>
+            <p>Comparte tu lista de deseos con familiares y amigos</p>
+            <button class="btn-action">Compartir Ahora</button>
+          </div>
+        </div>
+        
+        <div class="action-card">
+          <div class="action-icon">
+            <i class="fas fa-gift"></i>
+          </div>
+          <div class="action-content">
+            <h3>Lista de Regalos</h3>
+            <p>Crea una lista de regalos para ocasiones especiales</p>
+            <button class="btn-action">Crear Lista</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

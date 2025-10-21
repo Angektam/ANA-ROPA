@@ -1,0 +1,240 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-logo">
+        <i class="fas fa-gem"></i>
+        <h1>Boutique Elegance</h1>
+      </div>
+      <h2 class="auth-title">Crea tu cuenta</h2>
+      <p class="auth-subtitle">Únete a nuestra comunidad de moda</p>
+    </div>
+
+    <form class="auth-form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <!-- Error Message -->
+      <div class="error-message" *ngIf="errorMessage">
+        <i class="fas fa-exclamation-circle"></i>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <!-- Name Field -->
+      <div class="form-group">
+        <label for="name" class="form-label">
+          <i class="fas fa-user"></i>
+          Nombre completo
+        </label>
+        <div class="input-container">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            [(ngModel)]="registerData.name"
+            class="form-input"
+            placeholder="Tu nombre completo"
+            required
+            autocomplete="name">
+          <div class="input-icon">
+            <i class="fas fa-user"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email" class="form-label">
+          <i class="fas fa-envelope"></i>
+          Correo electrónico
+        </label>
+        <div class="input-container">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="registerData.email"
+            class="form-input"
+            placeholder="tu@email.com"
+            required
+            email
+            autocomplete="email">
+          <div class="input-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone Field -->
+      <div class="form-group">
+        <label for="phone" class="form-label">
+          <i class="fas fa-phone"></i>
+          Teléfono (opcional)
+        </label>
+        <div class="input-container">
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            [(ngModel)]="registerData.phone"
+            class="form-input"
+            placeholder="+52 55 1234 5678"
+            autocomplete="tel">
+          <div class="input-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password" class="form-label">
+          <i class="fas fa-lock"></i>
+          Contraseña
+        </label>
+        <div class="input-container">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            name="password"
+            [(ngModel)]="registerData.password"
+            class="form-input"
+            placeholder="Mínimo 6 caracteres"
+            required
+            autocomplete="new-password">
+          <div class="input-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <button
+            type="button"
+            class="password-toggle"
+            (click)="togglePasswordVisibility()"
+            [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'">
+            <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          </button>
+        </div>
+        
+        <!-- Password Strength Indicator -->
+        <div class="password-strength" *ngIf="registerData.password">
+          <div class="strength-bar">
+            <div 
+              class="strength-fill" 
+              [class]="'strength-' + getPasswordStrength()">
+            </div>
+          </div>
+          <span class="strength-text" [class]="'strength-' + getPasswordStrength()">
+            {{ getPasswordStrengthText() }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Confirm Password Field -->
+      <div class="form-group">
+        <label for="confirmPassword" class="form-label">
+          <i class="fas fa-lock"></i>
+          Confirmar contraseña
+        </label>
+        <div class="input-container">
+          <input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            id="confirmPassword"
+            name="confirmPassword"
+            [(ngModel)]="confirmPassword"
+            class="form-input"
+            placeholder="Repite tu contraseña"
+            required
+            autocomplete="new-password">
+          <div class="input-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <button
+            type="button"
+            class="password-toggle"
+            (click)="toggleConfirmPasswordVisibility()"
+            [attr.aria-label]="showConfirmPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'">
+            <i [class]="showConfirmPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          </button>
+        </div>
+        
+        <!-- Password Match Indicator -->
+        <div class="password-match" *ngIf="confirmPassword">
+          <i 
+            class="fas"
+            [class]="registerData.password === confirmPassword ? 'fa-check-circle text-success' : 'fa-times-circle text-error'">
+          </i>
+          <span 
+            [class]="registerData.password === confirmPassword ? 'text-success' : 'text-error'">
+            {{ registerData.password === confirmPassword ? 'Las contraseñas coinciden' : 'Las contraseñas no coinciden' }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Terms and Conditions -->
+      <div class="form-group">
+        <label class="checkbox-container">
+          <input
+            type="checkbox"
+            [(ngModel)]="acceptTerms"
+            name="acceptTerms"
+            required>
+          <span class="checkmark"></span>
+          <span class="checkbox-label">
+            Acepto los 
+            <a href="#" class="terms-link">términos y condiciones</a> 
+            y la 
+            <a href="#" class="terms-link">política de privacidad</a>
+          </span>
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="isLoading || !registerForm.form.valid || !acceptTerms">
+        <span *ngIf="!isLoading">
+          <i class="fas fa-user-plus"></i>
+          Crear Cuenta
+        </span>
+        <span *ngIf="isLoading" class="loading-content">
+          <i class="fas fa-spinner fa-spin"></i>
+          Creando cuenta...
+        </span>
+      </button>
+
+      <!-- Divider -->
+      <div class="divider">
+        <span>o</span>
+      </div>
+
+      <!-- Social Register -->
+      <div class="social-login">
+        <button type="button" class="btn-social btn-google">
+          <i class="fab fa-google"></i>
+          <span>Registrarse con Google</span>
+        </button>
+        
+        <button type="button" class="btn-social btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+          <span>Registrarse con Facebook</span>
+        </button>
+      </div>
+
+      <!-- Login Link -->
+      <div class="auth-footer">
+        <p>
+          ¿Ya tienes una cuenta?
+          <button
+            type="button"
+            class="login-link"
+            (click)="goToLogin()">
+            Inicia sesión aquí
+          </button>
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <!-- Background Elements -->
+  <div class="auth-background">
+    <div class="bg-element element-1"></div>
+    <div class="bg-element element-2"></div>
+    <div class="bg-element element-3"></div>
+  </div>
+</div>

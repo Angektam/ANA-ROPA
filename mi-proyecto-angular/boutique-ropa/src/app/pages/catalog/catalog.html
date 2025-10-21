@@ -1,0 +1,228 @@
+<div class="catalog-page">
+  <!-- Hero Section -->
+  <div class="catalog-hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="title-highlight">Catálogo</span> de Productos
+        </h1>
+        <p class="hero-subtitle">
+          Descubre nuestra colección exclusiva de moda femenina, cuidadosamente seleccionada para ti
+        </p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">{{ totalItems }}</span>
+            <span class="stat-label">Productos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">{{ categories.length }}</span>
+            <span class="stat-label">Categorías</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">4.8</span>
+            <span class="stat-label">Valoración</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-decoration">
+          <i class="fas fa-gem"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="catalog-content">
+    <!-- Barra de búsqueda mejorada -->
+    <div class="search-section">
+      <div class="search-container">
+        <div class="search-box">
+          <div class="search-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <input 
+            type="text" 
+            placeholder="Buscar productos, marcas, categorías..." 
+            [(ngModel)]="searchQuery"
+            (input)="onSearch(searchQuery)"
+            (keyup.enter)="onSearch(searchQuery)"
+            autocomplete="off"
+            class="search-input">
+          <button 
+            *ngIf="searchQuery && searchQuery.trim()" 
+            class="btn-clear-search" 
+            (click)="clearSearch()"
+            title="Limpiar búsqueda">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div class="search-actions">
+          <button 
+            class="btn-clear-filters" 
+            *ngIf="hasActiveFilters" 
+            (click)="clearFilters()">
+            <i class="fas fa-filter"></i>
+            Limpiar Filtros
+            <span class="filter-count">{{ getActiveFiltersCount() }}</span>
+          </button>
+          
+          <div class="view-toggle">
+            <button class="view-btn active" title="Vista de cuadrícula">
+              <i class="fas fa-th"></i>
+            </button>
+            <button class="view-btn" title="Vista de lista">
+              <i class="fas fa-list"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="catalog-layout">
+      <!-- Sidebar de filtros -->
+      <aside class="filters-sidebar">
+        <app-product-filter 
+          [categories]="categories"
+          [products]="products"
+          (filtersChange)="onFiltersChange($event)">
+        </app-product-filter>
+      </aside>
+
+      <!-- Contenido principal -->
+      <main class="products-section">
+        <!-- Información de resultados mejorada -->
+        <div class="results-header">
+          <div class="results-info">
+            <div class="results-count">
+              <span *ngIf="loading" class="loading-text">
+                <i class="fas fa-spinner fa-spin"></i>
+                Cargando productos...
+              </span>
+              <span *ngIf="!loading" class="results-text">
+                <i class="fas fa-box"></i>
+                Mostrando <strong>{{ (currentPage - 1) * itemsPerPage + 1 }}</strong> - 
+                <strong>{{ getMinValue(currentPage * itemsPerPage, totalItems) }}</strong> 
+                de <strong>{{ totalItems }}</strong> productos
+              </span>
+            </div>
+            
+            <div class="results-summary" *ngIf="!loading && hasActiveFilters">
+              <i class="fas fa-filter"></i>
+              <span>{{ getActiveFiltersCount() }} filtro(s) activo(s)</span>
+            </div>
+          </div>
+          
+          <div class="sort-section">
+            <div class="sort-label">
+              <i class="fas fa-sort"></i>
+              <span>Ordenar por:</span>
+            </div>
+            <div class="sort-dropdown">
+              <select 
+                [(ngModel)]="currentFilters.sortBy" 
+                (change)="applyFilters()"
+                class="sort-select">
+                <option value="">Recomendado</option>
+                <option value="newest">Más recientes</option>
+                <option value="price-asc">Precio: menor a mayor</option>
+                <option value="price-desc">Precio: mayor a menor</option>
+                <option value="rating">Mejor valorados</option>
+                <option value="name">Nombre A-Z</option>
+              </select>
+              <i class="fas fa-chevron-down sort-icon"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading spinner mejorado -->
+        <div class="loading-container" *ngIf="loading">
+          <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+          </div>
+          <p class="loading-text">Cargando productos...</p>
+        </div>
+
+        <!-- Grid de productos mejorado -->
+        <div class="products-container" *ngIf="!loading">
+          <div class="products-grid">
+            <app-product-card 
+              *ngFor="let product of paginatedProducts; let i = index"
+              [product]="product"
+              [priority]="i < 3"
+              (addToCart)="onProductAdded($event)"
+              class="product-item">
+            </app-product-card>
+          </div>
+        </div>
+
+        <!-- Mensaje cuando no hay productos mejorado -->
+        <div class="no-products-container" *ngIf="!loading && filteredProducts.length === 0">
+          <div class="no-products-content">
+            <div class="no-products-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <h3 class="no-products-title">No se encontraron productos</h3>
+            <p class="no-products-description">
+              Intenta ajustar tus filtros de búsqueda o explorar otras categorías.
+            </p>
+            <div class="no-products-actions">
+              <button class="btn-primary" (click)="clearFilters()">
+                <i class="fas fa-times"></i>
+                Limpiar Filtros
+              </button>
+              <button class="btn-secondary" (click)="clearSearch()">
+                <i class="fas fa-search"></i>
+                Nueva Búsqueda
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paginación mejorada -->
+        <div class="pagination-container" *ngIf="!loading && totalPages > 1">
+          <div class="pagination-info">
+            <span class="pagination-text">
+              Página <strong>{{ currentPage }}</strong> de <strong>{{ totalPages }}</strong>
+            </span>
+          </div>
+          
+          <div class="pagination-controls">
+            <button 
+              class="btn-pagination prev"
+              [disabled]="currentPage === 1"
+              (click)="onPageChange(currentPage - 1)"
+              title="Página anterior">
+              <i class="fas fa-chevron-left"></i>
+              <span>Anterior</span>
+            </button>
+
+            <div class="page-numbers">
+              <button 
+                *ngFor="let page of getPageNumbers()"
+                class="btn-page"
+                [class.active]="page === currentPage"
+                [class.disabled]="page === '...'"
+                [disabled]="page === '...'"
+                (click)="page !== '...' && typeof page === 'number' && onPageChange(page)"
+                [title]="page === '...' ? '' : 'Ir a página ' + page">
+                {{ page }}
+              </button>
+            </div>
+
+            <button 
+              class="btn-pagination next"
+              [disabled]="currentPage === totalPages"
+              (click)="onPageChange(currentPage + 1)"
+              title="Página siguiente">
+              <span>Siguiente</span>
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

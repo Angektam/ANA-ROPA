@@ -1,0 +1,269 @@
+<div class="cart-page">
+  <!-- Hero Section -->
+  <div class="cart-hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Carrito de Compras</span>
+        </div>
+        <h1 class="hero-title">Tu Selección Perfecta</h1>
+        <p class="hero-subtitle" *ngIf="itemsCount > 0">
+          {{ itemsCount }} {{ itemsCount === 1 ? 'artículo' : 'artículos' }} cuidadosamente seleccionados
+        </p>
+        <p class="hero-subtitle" *ngIf="itemsCount === 0">
+          Descubre nuestra colección y encuentra las prendas perfectas para ti
+        </p>
+      </div>
+      <div class="hero-image">
+        <div class="hero-decoration">
+          <i class="fas fa-heart"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Carrito vacío mejorado -->
+    <div class="empty-cart-container" *ngIf="cartItems.length === 0">
+      <div class="empty-cart-content">
+        <div class="empty-cart-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <h2 class="empty-cart-title">Tu carrito está vacío</h2>
+        <p class="empty-cart-description">
+          ¡Explora nuestra colección y encuentra las prendas perfectas para ti!
+        </p>
+        <div class="empty-cart-actions">
+          <a routerLink="/catalog" class="btn-primary">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Explorar Catálogo</span>
+          </a>
+          <a routerLink="/" class="btn-secondary">
+            <i class="fas fa-home"></i>
+            <span>Volver al Inicio</span>
+          </a>
+        </div>
+        <div class="empty-cart-features">
+          <div class="feature-item">
+            <i class="fas fa-shipping-fast"></i>
+            <span>Envío Gratis</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>Compra Segura</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-undo"></i>
+            <span>Devoluciones</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carrito con productos mejorado -->
+    <div class="cart-content" *ngIf="cartItems.length > 0">
+      <div class="cart-layout">
+        <div class="cart-items-section">
+          <div class="cart-items-header">
+            <h2 class="items-title">
+              <i class="fas fa-shopping-bag"></i>
+              Productos en tu carrito
+            </h2>
+            <div class="items-count">
+              {{ itemsCount }} {{ itemsCount === 1 ? 'artículo' : 'artículos' }}
+            </div>
+          </div>
+          
+          <div class="cart-items">
+            <div class="cart-item" *ngFor="let item of cartItems">
+              <div class="item-image">
+                <img [src]="item.product.image" [alt]="item.product.name">
+                <div class="item-badges">
+                  <span class="badge-new" *ngIf="item.product.isNew">
+                    <i class="fas fa-sparkles"></i>
+                    Nuevo
+                  </span>
+                  <span class="badge-sale" *ngIf="item.product.originalPrice">
+                    <i class="fas fa-tag"></i>
+                    Oferta
+                  </span>
+                </div>
+              </div>
+              
+              <div class="item-details">
+                <div class="item-header">
+                  <h3 class="item-name">{{ item.product.name }}</h3>
+                  <button 
+                    class="btn-remove" 
+                    (click)="removeItem(item)"
+                    title="Eliminar del carrito">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+                
+                <p class="item-category">
+                  <i class="fas fa-tag"></i>
+                  {{ item.product.category?.name || 'Sin categoría' }}
+                </p>
+                
+                <div class="item-options">
+                  <div class="option-item" *ngIf="item.selectedSize">
+                    <span class="option-label">
+                      <i class="fas fa-ruler"></i>
+                      Talla:
+                    </span>
+                    <span class="option-value">{{ item.selectedSize }}</span>
+                  </div>
+                  <div class="option-item" *ngIf="item.selectedColor">
+                    <span class="option-label">
+                      <i class="fas fa-palette"></i>
+                      Color:
+                    </span>
+                    <span class="option-value">{{ item.selectedColor }}</span>
+                  </div>
+                </div>
+                
+                <div class="item-price">
+                  <span class="current-price">${{ item.product.price | number:'1.2-2' }}</span>
+                  <span class="original-price" *ngIf="item.product.originalPrice">
+                    ${{ item.product.originalPrice | number:'1.2-2' }}
+                  </span>
+                  <span class="savings" *ngIf="item.product.originalPrice">
+                    Ahorras ${{ (item.product.originalPrice - item.product.price) | number:'1.2-2' }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="item-quantity">
+                <label class="quantity-label">
+                  <i class="fas fa-sort-numeric-up"></i>
+                  Cantidad:
+                </label>
+                <div class="quantity-controls">
+                  <button 
+                    class="btn-quantity" 
+                    (click)="updateQuantity(item, item.quantity - 1)"
+                    [disabled]="item.quantity <= 1"
+                    title="Disminuir cantidad">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <span class="quantity-value">{{ item.quantity }}</span>
+                  <button 
+                    class="btn-quantity" 
+                    (click)="updateQuantity(item, item.quantity + 1)"
+                    [disabled]="item.quantity >= item.product.stock"
+                    title="Aumentar cantidad">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+                <div class="stock-info" *ngIf="item.product.stock <= 5">
+                  <i class="fas fa-exclamation-triangle"></i>
+                  <span>Solo quedan {{ item.product.stock }} unidades</span>
+                </div>
+              </div>
+
+              <div class="item-total">
+                <div class="total-label">Subtotal:</div>
+                <div class="total-amount">${{ (item.product.price * item.quantity) | number:'1.2-2' }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resumen del carrito mejorado -->
+        <div class="cart-summary">
+          <div class="summary-header">
+            <h3 class="summary-title">
+              <i class="fas fa-receipt"></i>
+              Resumen del Pedido
+            </h3>
+          </div>
+          
+          <div class="summary-details">
+            <div class="summary-row">
+              <div class="row-label">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Subtotal ({{ itemsCount }} {{ itemsCount === 1 ? 'artículo' : 'artículos' }})</span>
+              </div>
+              <div class="row-value">${{ total | number:'1.2-2' }}</div>
+            </div>
+            
+            <div class="summary-row">
+              <div class="row-label">
+                <i class="fas fa-truck"></i>
+                <span>Envío</span>
+              </div>
+              <div class="row-value">
+                <span class="free-shipping" *ngIf="total >= 100">
+                  <i class="fas fa-check-circle"></i>
+                  Gratis
+                </span>
+                <span class="shipping-cost" *ngIf="total < 100">$15.00</span>
+              </div>
+            </div>
+            
+            <div class="summary-row total-row">
+              <div class="row-label">
+                <i class="fas fa-calculator"></i>
+                <span>Total</span>
+              </div>
+              <div class="row-value total-amount">
+                ${{ (total + (total >= 100 ? 0 : 15)) | number:'1.2-2' }}
+              </div>
+            </div>
+          </div>
+
+          <div class="summary-actions">
+            <button class="btn-checkout" (click)="proceedToCheckout()">
+              <i class="fas fa-credit-card"></i>
+              <span>Proceder al Pago</span>
+              <div class="btn-shine"></div>
+            </button>
+            
+            <div class="secondary-actions">
+              <button class="btn-clear" (click)="clearCart()">
+                <i class="fas fa-trash"></i>
+                <span>Vaciar Carrito</span>
+              </button>
+              
+              <a routerLink="/catalog" class="btn-continue">
+                <i class="fas fa-arrow-left"></i>
+                <span>Continuar Comprando</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="shipping-info" *ngIf="total < 100">
+            <div class="shipping-notice">
+              <div class="notice-icon">
+                <i class="fas fa-truck"></i>
+              </div>
+              <div class="notice-content">
+                <div class="notice-title">¡Envío gratis disponible!</div>
+                <div class="notice-text">
+                  Agrega ${{ (100 - total) | number:'1.2-2' }} más para obtener envío gratis
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="security-info">
+            <div class="security-item">
+              <i class="fas fa-shield-alt"></i>
+              <span>Compra 100% segura</span>
+            </div>
+            <div class="security-item">
+              <i class="fas fa-lock"></i>
+              <span>Datos protegidos</span>
+            </div>
+            <div class="security-item">
+              <i class="fas fa-undo"></i>
+              <span>Devoluciones fáciles</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

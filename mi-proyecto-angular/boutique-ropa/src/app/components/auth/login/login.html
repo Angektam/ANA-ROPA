@@ -1,0 +1,144 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-logo">
+        <i class="fas fa-gem"></i>
+        <h1>Boutique Elegance</h1>
+      </div>
+      <h2 class="auth-title">Bienvenido de vuelta</h2>
+      <p class="auth-subtitle">Inicia sesión en tu cuenta</p>
+    </div>
+
+    <form class="auth-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <!-- Error Message -->
+      <div class="error-message" *ngIf="errorMessage">
+        <i class="fas fa-exclamation-circle"></i>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email" class="form-label">
+          <i class="fas fa-envelope"></i>
+          Correo electrónico
+        </label>
+        <div class="input-container">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="loginData.email"
+            class="form-input"
+            placeholder="tu@email.com"
+            required
+            email
+            autocomplete="email">
+          <div class="input-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password" class="form-label">
+          <i class="fas fa-lock"></i>
+          Contraseña
+        </label>
+        <div class="input-container">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            name="password"
+            [(ngModel)]="loginData.password"
+            class="form-input"
+            placeholder="Tu contraseña"
+            required
+            autocomplete="current-password">
+          <div class="input-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <button
+            type="button"
+            class="password-toggle"
+            (click)="togglePasswordVisibility()"
+            [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'">
+            <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Remember Me & Forgot Password -->
+      <div class="form-options">
+        <label class="checkbox-container">
+          <input
+            type="checkbox"
+            [(ngModel)]="rememberMe"
+            name="rememberMe">
+          <span class="checkmark"></span>
+          <span class="checkbox-label">Recordarme</span>
+        </label>
+        
+        <button
+          type="button"
+          class="forgot-password-link"
+          (click)="goToForgotPassword()">
+          ¿Olvidaste tu contraseña?
+        </button>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="isLoading || !loginForm.form.valid">
+        <span *ngIf="!isLoading">
+          <i class="fas fa-sign-in-alt"></i>
+          Iniciar Sesión
+        </span>
+        <span *ngIf="isLoading" class="loading-content">
+          <i class="fas fa-spinner fa-spin"></i>
+          Iniciando sesión...
+        </span>
+      </button>
+
+      <!-- Divider -->
+      <div class="divider">
+        <span>o</span>
+      </div>
+
+      <!-- Social Login -->
+      <div class="social-login">
+        <button type="button" class="btn-social btn-google">
+          <i class="fab fa-google"></i>
+          <span>Continuar con Google</span>
+        </button>
+        
+        <button type="button" class="btn-social btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+          <span>Continuar con Facebook</span>
+        </button>
+      </div>
+
+      <!-- Register Link -->
+      <div class="auth-footer">
+        <p>
+          ¿No tienes una cuenta?
+          <button
+            type="button"
+            class="register-link"
+            (click)="goToRegister()">
+            Regístrate aquí
+          </button>
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <!-- Background Elements -->
+  <div class="auth-background">
+    <div class="bg-element element-1"></div>
+    <div class="bg-element element-2"></div>
+    <div class="bg-element element-3"></div>
+  </div>
+</div>

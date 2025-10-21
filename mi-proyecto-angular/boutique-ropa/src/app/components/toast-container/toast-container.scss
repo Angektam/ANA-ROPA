@@ -1,0 +1,168 @@
+.toast-container {
+  position: fixed;
+  top: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-tooltip);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 400px;
+  pointer-events: none;
+
+  @media (max-width: 640px) {
+    top: var(--space-4);
+    right: var(--space-4);
+    left: var(--space-4);
+    max-width: none;
+  }
+}
+
+.toast {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-xl);
+  pointer-events: all;
+  overflow: hidden;
+  animation: slideInRight 0.3s ease-out;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+  }
+
+  &-success {
+    &::before {
+      background: var(--success-color);
+    }
+    
+    .toast-icon {
+      color: var(--success-color);
+      background: rgba(var(--success-rgb), 0.1);
+    }
+  }
+
+  &-error {
+    &::before {
+      background: var(--error-color);
+    }
+    
+    .toast-icon {
+      color: var(--error-color);
+      background: rgba(var(--error-rgb), 0.1);
+    }
+  }
+
+  &-warning {
+    &::before {
+      background: var(--warning-color);
+    }
+    
+    .toast-icon {
+      color: var(--warning-color);
+      background: rgba(var(--warning-rgb), 0.1);
+    }
+  }
+
+  &-info {
+    &::before {
+      background: var(--info-color);
+    }
+    
+    .toast-icon {
+      color: var(--info-color);
+      background: rgba(var(--info-rgb), 0.1);
+    }
+  }
+}
+
+.toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  
+  i {
+    font-size: var(--text-lg);
+  }
+}
+
+.toast-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast-message {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+.toast-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  
+  &:hover {
+    background: var(--gray-100);
+    color: var(--text-color);
+  }
+  
+  i {
+    font-size: var(--text-sm);
+  }
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: currentColor;
+  opacity: 0.2;
+  animation: progress 3s linear;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes progress {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
