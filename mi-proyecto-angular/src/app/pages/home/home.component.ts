@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -12,33 +13,87 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomeComponent {
   newsletterEmail = '';
+  Math = Math; // Hacer Math disponible en el template
+
+  constructor(private cartService: CartService) {}
   featuredProducts = [
     {
       id: 1,
       name: 'Vestido Elegante de Noche',
       price: 299.99,
       originalPrice: 399.99,
-      image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400',
+      image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600',
       category: 'Vestidos',
       rating: 4.8,
-      isOnSale: true
+      isOnSale: true,
+      description: 'Vestido elegante perfecto para ocasiones especiales. Corte clásico que realza la silueta femenina.',
+      material: 'Seda y encaje',
+      inStock: true,
+      stock: 15
+    },
+    {
+      id: 6,
+      name: 'Vestido de Fiesta Brillante',
+      price: 399.99,
+      originalPrice: 499.99,
+      image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=600',
+      category: 'Vestidos',
+      rating: 4.9,
+      isOnSale: true,
+      description: 'Vestido deslumbrante para fiestas y eventos especiales. Diseño único que te hará brillar.',
+      material: 'Seda con detalles brillantes',
+      inStock: true,
+      stock: 4
+    },
+    {
+      id: 4,
+      name: 'Chaqueta Blazer Elegante',
+      price: 249.99,
+      image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600',
+      category: 'Chaquetas',
+      rating: 4.9,
+      isNew: true,
+      description: 'Blazer elegante para ocasiones formales. Corte perfecto que realza la figura.',
+      material: 'Lana y poliéster',
+      inStock: true,
+      stock: 6
     },
     {
       id: 2,
       name: 'Blusa de Seda Premium',
       price: 149.99,
-      image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400',
+      image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600',
       category: 'Blusas',
       rating: 4.6,
-      isNew: true
+      isNew: true,
+      description: 'Blusa de seda de alta calidad para el día a día. Diseño versátil y cómodo.',
+      material: '100% Seda',
+      inStock: true,
+      stock: 8
     },
     {
-      id: 3,
-      name: 'Falda A-Line Clásica',
-      price: 199.99,
-      image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400',
-      category: 'Faldas',
-      rating: 4.7
+      id: 5,
+      name: 'Bolso de Mano de Lujo',
+      price: 179.99,
+      image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600',
+      category: 'Accesorios',
+      rating: 4.5,
+      description: 'Bolso de mano elegante para complementar tu look. Diseño atemporal y funcional.',
+      material: 'Cuero genuino',
+      inStock: true,
+      stock: 20
+    },
+    {
+      id: 10,
+      name: 'Zapatos de Tacón Clásicos',
+      price: 129.99,
+      image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600',
+      category: 'Zapatos',
+      rating: 4.7,
+      description: 'Zapatos de tacón clásicos que nunca pasan de moda. Cómodos y elegantes.',
+      material: 'Cuero genuino',
+      inStock: true,
+      stock: 18
     }
   ];
 
@@ -90,5 +145,20 @@ export class HomeComponent {
   onProductClick(product: any) {
     console.log('Ver producto:', product);
     // Aquí implementarías la navegación al detalle del producto
+  }
+
+  onAddToCart(product: any) {
+    this.cartService.addToCart(product);
+    alert(`¡${product.name} agregado al carrito!`);
+  }
+
+  onAddToWishlist(product: any) {
+    this.cartService.toggleWishlist(product.id);
+    const isInWishlist = this.cartService.isInWishlist(product.id);
+    if (isInWishlist) {
+      alert(`¡${product.name} agregado a tu lista de deseos!`);
+    } else {
+      alert(`¡${product.name} removido de tu lista de deseos!`);
+    }
   }
 }

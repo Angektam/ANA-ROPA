@@ -72,11 +72,11 @@
         <div class="user-actions">
           <a routerLink="/wishlist" class="action-btn" title="Lista de Deseos">
             <i class="fas fa-heart"></i>
-            <span class="action-count">{{ wishlistCount }}</span>
+            <span class="action-count">{{ wishlistCount$ | async }}</span>
           </a>
           <a routerLink="/cart" class="action-btn" title="Carrito">
             <i class="fas fa-shopping-bag"></i>
-            <span class="action-count">{{ cartCount }}</span>
+            <span class="action-count">{{ cartCount$ | async }}</span>
           </a>
           <a routerLink="/login" class="action-btn" title="Mi Cuenta">
             <i class="fas fa-user"></i>

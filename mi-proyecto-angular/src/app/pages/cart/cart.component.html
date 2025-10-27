@@ -1,0 +1,84 @@
+<section class="hero-section">
+  <div class="hero-background">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Tu Selección de Moda Femenina</h1>
+        <p class="hero-subtitle">Revisa las prendas que has seleccionado para realzar tu belleza</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cart-section">
+  <div class="container">
+    <!-- Carrito vacío -->
+    <div class="empty-cart" *ngIf="(cartItems$ | async)?.length === 0">
+      <i class="fas fa-shopping-bag"></i>
+      <h2>Tu carrito está vacío</h2>
+      <p>Explora nuestra colección de moda femenina y encuentra prendas que realcen tu estilo</p>
+      <a routerLink="/catalog" class="btn btn-primary">Explorar Catálogo</a>
+    </div>
+
+    <!-- Carrito con productos -->
+    <div class="cart-content" *ngIf="(cartItems$ | async)?.length! > 0">
+      <div class="cart-header">
+        <h2>Tu Carrito ({{ (cartItems$ | async)?.length }} productos)</h2>
+        <button class="btn btn-outline" (click)="clearCart()">
+          <i class="fas fa-trash"></i>
+          Vaciar Carrito
+        </button>
+      </div>
+
+      <div class="cart-items">
+        <div class="cart-item" *ngFor="let item of cartItems$ | async">
+          <div class="item-image">
+            <img [src]="item.image" [alt]="item.name">
+          </div>
+          <div class="item-details">
+            <h3 class="item-name">{{ item.name }}</h3>
+            <div class="item-options" *ngIf="item.size || item.color">
+              <span class="option" *ngIf="item.size">Talla: {{ item.size }}</span>
+              <span class="option" *ngIf="item.color">Color: {{ item.color }}</span>
+            </div>
+            <div class="item-price">${{ item.price }}</div>
+          </div>
+          <div class="item-quantity">
+            <button class="quantity-btn" (click)="updateQuantity(item, item.quantity - 1)">
+              <i class="fas fa-minus"></i>
+            </button>
+            <span class="quantity">{{ item.quantity }}</span>
+            <button class="quantity-btn" (click)="updateQuantity(item, item.quantity + 1)">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <div class="item-total">
+            ${{ (item.price * item.quantity).toFixed(2) }}
+          </div>
+          <button class="remove-btn" (click)="removeItem(item)" title="Eliminar">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="cart-summary">
+        <div class="summary-details">
+          <div class="summary-row">
+            <span>Subtotal:</span>
+            <span>${{ (totalPrice$ | async)?.toFixed(2) }}</span>
+          </div>
+          <div class="summary-row">
+            <span>Envío:</span>
+            <span>Gratis</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total:</span>
+            <span>${{ (totalPrice$ | async)?.toFixed(2) }}</span>
+          </div>
+        </div>
+        <div class="summary-actions">
+          <a routerLink="/catalog" class="btn btn-outline">Seguir Comprando</a>
+          <a routerLink="/checkout" class="btn btn-primary">Proceder al Pago</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
