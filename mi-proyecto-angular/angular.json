@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "boutique-ropa": {
+    "boutique-ana": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "boutique-ropa:build:production"
+              "buildTarget": "boutique-ana:build:production"
             },
             "development": {
-              "buildTarget": "boutique-ropa:build:development"
+              "buildTarget": "boutique-ana:build:development"
             }
           },
           "defaultConfiguration": "development"

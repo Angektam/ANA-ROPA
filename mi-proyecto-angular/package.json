@@ -1,11 +1,11 @@
 {
-  "name": "boutique-ropa",
+  "name": "boutique-ana",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:gh-pages": "ng build --configuration production --base-href /ANA/",
+    "build:gh-pages": "ng build --configuration production --base-href /boutique-ana/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "db": "json-server db.json --port 3000",

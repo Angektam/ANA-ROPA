@@ -1,5 +1,5 @@
 [build]
-  publish = "dist/boutique-ropa"
+  publish = "dist/boutique-ana"
   command = "npm run build:gh-pages"
 
 [build.environment]

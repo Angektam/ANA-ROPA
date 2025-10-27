@@ -1,150 +1,140 @@
 # 💖 Boutique Ana - Moda Femenina Elegante
 
-Una boutique de moda femenina moderna y elegante construida con Angular, diseñada especialmente para la mujer moderna que busca expresar su personalidad única a través de prendas exclusivas y de alta calidad.
+**Tu estilo, tu elegancia, tu confianza** ✨
 
-## ✨ Características
+Una boutique online especializada en moda femenina de lujo, diseñada para realzar la belleza y confianza de la mujer moderna.
 
-### 🎨 Diseño Femenino y Elegante
-- **Paleta de colores suaves**: Rosa, coral y tonos elegantes
-- **Tipografía elegante**: Poppins y Playfair Display
-- **Elementos decorativos**: Animaciones sutiles y emojis femeninos
-- **Diseño responsive**: Perfecto en todos los dispositivos
+## 🌟 Características
 
-### 🛍️ Funcionalidades de E-commerce
-- **Catálogo completo**: Vestidos, blusas, faldas, accesorios y más
-- **Filtros avanzados**: Por categoría, precio, talla, color, ocasión, estilo y material
-- **Carrito de compras**: Gestión completa de productos
-- **Lista de deseos**: Guarda tus prendas favoritas
-- **Búsqueda inteligente**: Encuentra exactamente lo que buscas
+- **Diseño 100% femenino** con paleta de colores elegante
+- **Interfaz moderna y responsive** para todos los dispositivos
+- **Navegación intuitiva** entre categorías de moda
+- **Formularios de autenticación** (Login/Register)
+- **Secciones temáticas**: Hero, Featured, Categories, Testimonials
+- **Elementos decorativos** con animaciones suaves
+- **Tipografía elegante** con Google Fonts
 
-### 🎯 Experiencia de Usuario
-- **Navegación intuitiva**: Diseño centrado en la mujer
-- **Categorías específicas**: Vestidos de noche, blusas elegantes, joyería
-- **Servicios premium**: Personal shopper, consulta de estilo
-- **Testimonios reales**: Experiencias de clientas satisfechas
+## 🛍️ Páginas Disponibles
 
-## 🚀 Tecnologías Utilizadas
+- **Inicio** - Presentación de la boutique y productos destacados
+- **Catálogo** - Exploración de productos por categorías
+- **Carrito** - Gestión de compras
+- **Lista de Deseos** - Productos favoritos
+- **Checkout** - Proceso de compra
+- **Login/Register** - Autenticación de usuarios
 
-- **Angular 17+**: Framework principal
-- **TypeScript**: Lenguaje de programación
-- **SCSS**: Estilos avanzados y variables CSS
-- **Font Awesome**: Iconografía elegante
-- **Google Fonts**: Tipografías premium
-- **JSON Server**: API de desarrollo
+## 🎨 Diseño
 
-## 📦 Instalación y Desarrollo
+- **Colores principales**: Rosa (#e91e63), Púrpura (#9c27b0), Coral (#ff6b9d)
+- **Tipografías**: Poppins (sans-serif), Playfair Display (serif)
+- **Estilo**: Elegante, sofisticado, femenino
+- **Responsive**: Mobile-first design
 
-### Prerrequisitos
-- Node.js 18+
-- npm 9+
+## 🚀 Tecnologías
 
-### Instalación
+- **Angular 17** - Framework principal
+- **TypeScript** - Lenguaje de programación
+- **SCSS** - Preprocesador CSS
+- **HTML5** - Estructura semántica
+- **Font Awesome** - Iconografía
+- **Google Fonts** - Tipografías
+
+## 📦 Instalación
+
 ```bash
 # Clonar el repositorio
-git clone https://github.com/Angektam/ANA.git
+git clone https://github.com/Angektam/boutique-ana.git
 
-# Navegar al directorio del proyecto
-cd ANA/boutique-ropa
+# Navegar al directorio
+cd boutique-ana
 
 # Instalar dependencias
 npm install
 
-# Iniciar el servidor de desarrollo
-npm run dev
+# Ejecutar en desarrollo
+npm start
+
+# Build para producción
+npm run build:gh-pages
 ```
 
-### Scripts Disponibles
-```bash
-# Desarrollo
-npm run dev          # Servidor de desarrollo + API
-npm start           # Solo servidor de desarrollo
-
-# Construcción
-npm run build              # Build de producción
-npm run build:gh-pages     # Build para GitHub Pages
-
-# Testing
-npm test            # Ejecutar tests
-```
-
-## 🌐 Despliegue
+## 🌐 Deploy
 
 ### GitHub Pages
-El proyecto está configurado para desplegarse automáticamente en GitHub Pages:
+El proyecto está configurado para deploy automático en GitHub Pages:
+- URL: `https://angektam.github.io/boutique-ana/`
+- Se actualiza automáticamente con cada push a `main`
 
-1. **URL de producción**: `https://angektam.github.io/ANA/`
-2. **Deploy automático**: Cada push a `main` activa el despliegue
-3. **Configuración**: Workflow en `.github/workflows/deploy.yml`
-
-### Configuración Local
+### Netlify
 ```bash
-# Build para GitHub Pages
+# Deploy manual a Netlify
 npm run build:gh-pages
-
-# Los archivos se generan en dist/boutique-ropa/browser/
+npx netlify deploy --dir=dist/boutique-ana --prod
 ```
 
-## 🎨 Paleta de Colores
+## 📁 Estructura del Proyecto
 
-```scss
-// Colores principales
---primary-color: #e91e63;      // Rosa elegante
---secondary-color: #9c27b0;    // Púrpura sofisticado
---accent-color: #ff6b9d;       // Coral vibrante
-
-// Colores de fondo
---background-primary: #ffffff;  // Blanco puro
---background-secondary: #fef7f7; // Rosa muy suave
---background-light: #fce4ec;   // Rosa claro
 ```
+boutique-ana/
+├── src/
+│   ├── app/
+│   │   ├── components/     # Componentes reutilizables
+│   │   ├── pages/         # Páginas principales
+│   │   ├── models/        # Interfaces TypeScript
+│   │   └── services/      # Servicios Angular
+│   ├── styles.scss       # Estilos globales
+│   └── index.html        # Página principal
+├── dist/                 # Build de producción
+├── .github/workflows/    # GitHub Actions
+├── netlify.toml         # Configuración Netlify
+└── package.json         # Dependencias
+```
+
+## 🎯 Funcionalidades
+
+- ✅ **Navegación completa** entre páginas
+- ✅ **Diseño responsive** para móviles y desktop
+- ✅ **Formularios funcionales** de autenticación
+- ✅ **Animaciones suaves** y efectos visuales
+- ✅ **Iconografía consistente** con Font Awesome
+- ✅ **Tipografía elegante** con Google Fonts
+- ✅ **Paleta de colores femenina** y sofisticada
+
+## 🚀 Scripts Disponibles
+
+- `npm start` - Servidor de desarrollo
+- `npm run build` - Build de producción
+- `npm run build:gh-pages` - Build para GitHub Pages
+- `npm test` - Ejecutar tests
+- `npm run dev` - Desarrollo con base de datos mock
 
 ## 📱 Responsive Design
 
-- **Mobile First**: Diseño optimizado para móviles
-- **Breakpoints**: 640px, 768px, 1024px, 1280px
+- **Mobile First**: Optimizado para dispositivos móviles
+- **Breakpoints**: 480px, 768px, 1024px, 1200px
 - **Grid System**: CSS Grid y Flexbox
-- **Imágenes adaptativas**: Optimizadas para cada dispositivo
+- **Typography**: Escalas responsivas
 
-## 🛠️ Estructura del Proyecto
+## 🎨 Personalización
 
-```
-boutique-ropa/
-├── src/
-│   ├── app/
-│   │   ├── components/          # Componentes reutilizables
-│   │   │   ├── auth/           # Autenticación
-│   │   │   ├── header/         # Navegación principal
-│   │   │   ├── footer/         # Pie de página
-│   │   │   ├── product-card/   # Tarjeta de producto
-│   │   │   └── product-filter/ # Filtros avanzados
-│   │   ├── pages/              # Páginas principales
-│   │   │   ├── home/           # Página de inicio
-│   │   │   ├── catalog/        # Catálogo de productos
-│   │   │   ├── cart/           # Carrito de compras
-│   │   │   └── wishlist/       # Lista de deseos
-│   │   ├── services/           # Servicios Angular
-│   │   └── models/             # Interfaces TypeScript
-│   ├── styles.scss             # Estilos globales
-│   └── index.html              # HTML principal
-├── .github/workflows/          # CI/CD
-└── package.json                # Dependencias
+El diseño está completamente personalizable a través de variables CSS en `src/styles.scss`:
+
+```scss
+:root {
+  --primary-color: #e91e63;    // Rosa principal
+  --secondary-color: #9c27b0;  // Púrpura secundario
+  --accent-color: #ff6b9d;     // Coral de acento
+  // ... más variables
+}
 ```
 
-## 🎯 Características Destacadas
+## 📄 Licencia
 
-### Para la Mujer Moderna
-- **Categorías específicas**: Vestidos elegantes, blusas sofisticadas
-- **Filtros por ocasión**: Trabajo, fiesta, boda, cita
-- **Estilos diversos**: Elegante, casual, vintage, bohemio
-- **Materiales premium**: Seda, algodón, lino, encaje
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
-### Experiencia de Compra
-- **Vista rápida**: Modal con detalles del producto
-- **Comparación**: Compara productos fácilmente
-- **Lista de deseos**: Guarda para más tarde
-- **Carrito inteligente**: Gestión de tallas y colores
+## 👥 Contribuciones
 
-## 🤝 Contribución
+Las contribuciones son bienvenidas. Por favor:
 
 1. Fork el proyecto
 2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
@@ -152,25 +142,11 @@ boutique-ropa/
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
-
-## 👥 Equipo
-
-- **Desarrollo**: Angektam
-- **Diseño**: Enfocado en la elegancia femenina
-- **UX/UI**: Experiencia centrada en la mujer moderna
-
 ## 📞 Contacto
 
 - **GitHub**: [@Angektam](https://github.com/Angektam)
-- **Proyecto**: [Boutique Ana](https://github.com/Angektam/ANA)
+- **Proyecto**: [Boutique Ana](https://github.com/Angektam/boutique-ana)
 
 ---
 
 💖 **Boutique Ana** - Tu estilo, tu elegancia, tu confianza ✨
-
-**Última actualización**: 27 de octubre de 2025 - Deploy automático activado 🚀
-
-**Estado**: Workflow de GitHub Pages activado - Deploy en progreso 🚀
