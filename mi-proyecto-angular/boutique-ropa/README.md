@@ -173,4 +173,4 @@ Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
 
 **Última actualización**: 27 de octubre de 2025 - Deploy automático activado 🚀
 
-**Estado**: Verificando workflow de GitHub Pages 🔧
+**Estado**: Workflow de GitHub Pages activado - Deploy en progreso 🚀
