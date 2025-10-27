@@ -1,0 +1,188 @@
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-background">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Boutique Ana</h1>
+        <p class="hero-subtitle">Tu estilo, tu elegancia, tu confianza</p>
+        <p class="hero-description">
+          Descubre nuestra exclusiva colección de moda femenina, diseñada para realzar tu belleza natural 
+          y potenciar tu confianza en cada ocasión especial.
+        </p>
+        <div class="hero-actions">
+          <a routerLink="/catalog" class="btn btn-primary">
+            <i class="fas fa-shopping-bag"></i>
+            Explorar Colección
+          </a>
+          <a routerLink="/catalog" class="btn btn-outline">
+            <i class="fas fa-heart"></i>
+            Ver Ofertas
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="featured-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">
+        <i class="fas fa-star"></i>
+        <span>Destacados</span>
+      </div>
+      <h2 class="section-title">Nuestras Favoritas</h2>
+      <p class="section-subtitle">Selección especial de prendas que amamos</p>
+    </div>
+    
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let product of featuredProducts">
+        <div class="product-image">
+          <img [src]="product.image" [alt]="product.name">
+          <div class="product-badges">
+            <span class="badge badge-sale" *ngIf="product.isOnSale">Oferta</span>
+            <span class="badge badge-new" *ngIf="product.isNew">Nuevo</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <div class="product-price">
+            <span class="current-price">${{ product.price }}</span>
+            <span class="original-price" *ngIf="product.originalPrice">${{ product.originalPrice }}</span>
+          </div>
+          <div class="product-rating">
+            <div class="stars">
+              <i class="fas fa-star" *ngFor="let star of [1,2,3,4,5]"></i>
+            </div>
+            <span class="rating-value">{{ product.rating }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">
+        <i class="fas fa-th-large"></i>
+        <span>Nuestras Categorías</span>
+      </div>
+      <h2 class="section-title">Explora por categorías</h2>
+      <p class="section-subtitle">Encuentra exactamente lo que buscas</p>
+    </div>
+    
+    <div class="categories-grid">
+      <div class="category-card" *ngFor="let category of categories">
+        <div class="category-icon">
+          <i [class]="category.icon"></i>
+        </div>
+        <h3>{{ category.name }}</h3>
+        <p>{{ category.count }}+ productos</p>
+        <a routerLink="/catalog" class="category-link">
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">
+        <i class="fas fa-quote-left"></i>
+        <span>Testimonios</span>
+      </div>
+      <h2 class="section-title">Lo que dicen nuestras clientas</h2>
+      <p class="section-subtitle">Historias reales de mujeres que confían en nosotros</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+        <div class="testimonial-content">
+          <div class="stars">
+            <i class="fas fa-star" *ngFor="let star of [1,2,3,4,5]"></i>
+          </div>
+          <p class="testimonial-text">"{{ testimonial.text }}"</p>
+          <div class="testimonial-author">
+            <img [src]="testimonial.avatar" [alt]="testimonial.name" class="author-avatar">
+            <div class="author-info">
+              <h4 class="author-name">{{ testimonial.name }}</h4>
+              <span class="author-title">Cliente Verificada</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section">
+  <div class="container">
+    <div class="about-content">
+      <div class="about-text">
+        <div class="section-badge">
+          <i class="fas fa-heart"></i>
+          <span>Sobre Boutique Ana</span>
+        </div>
+        <h2 class="section-title">Tu estilo, tu elegancia, tu confianza</h2>
+        <p class="section-subtitle">
+          En Boutique Ana, creemos que cada mujer merece sentirse hermosa, confiada y elegante. 
+          Nuestra misión es empoderar a la mujer moderna a través de la moda, ofreciendo prendas 
+          cuidadosamente seleccionadas que realzan su belleza natural.
+        </p>
+        <div class="stats">
+          <div class="stat">
+            <h3>5000+</h3>
+            <p>Clientas Satisfechas</p>
+          </div>
+          <div class="stat">
+            <h3>1000+</h3>
+            <p>Productos Únicos</p>
+          </div>
+          <div class="stat">
+            <h3>98%</h3>
+            <p>Satisfacción</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600" alt="Boutique Ana">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-content">
+      <div class="newsletter-text">
+        <h2 class="newsletter-title">Mantente al día con las tendencias</h2>
+        <p class="newsletter-subtitle">
+          Suscríbete a nuestro newsletter y recibe las últimas tendencias de moda femenina, 
+          ofertas exclusivas y consejos de estilo personalizados.
+        </p>
+      </div>
+      <div class="newsletter-form">
+        <div class="form-group">
+          <input type="email" placeholder="Tu dirección de email" class="form-input">
+          <button class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i>
+            Suscribirse
+          </button>
+        </div>
+        <p class="newsletter-note">
+          <i class="fas fa-lock"></i>
+          Respetamos tu privacidad. Sin spam.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

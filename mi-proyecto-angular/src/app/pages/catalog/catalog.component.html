@@ -1,0 +1,52 @@
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-background">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Catálogo de Moda Femenina</h1>
+        <p class="hero-subtitle">
+          Descubre nuestra exclusiva colección de vestidos, blusas, faldas y accesorios, 
+          cuidadosamente seleccionados para realzar tu belleza natural.
+        </p>
+        <div class="search-bar">
+          <div class="search-input-group">
+            <input type="text" placeholder="Buscar vestidos, blusas, faldas, accesorios..." class="search-input">
+            <button class="search-btn">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section class="products-section">
+  <div class="container">
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let product of products">
+        <div class="product-image">
+          <img [src]="product.image" [alt]="product.name">
+          <div class="product-badges">
+            <span class="badge badge-sale" *ngIf="product.isOnSale">Oferta</span>
+            <span class="badge badge-new" *ngIf="product.isNew">Nuevo</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <div class="product-price">
+            <span class="current-price">${{ product.price }}</span>
+            <span class="original-price" *ngIf="product.originalPrice">${{ product.originalPrice }}</span>
+          </div>
+          <div class="product-rating">
+            <div class="stars">
+              <i class="fas fa-star" *ngFor="let star of [1,2,3,4,5]"></i>
+            </div>
+            <span class="rating-value">{{ product.rating }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

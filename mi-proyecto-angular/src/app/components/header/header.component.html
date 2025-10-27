@@ -1,0 +1,198 @@
+<header class="header">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-content">
+        <div class="welcome-text">
+          <i class="fas fa-heart"></i>
+          <span>Bienvenida a Boutique Ana - Tu estilo, tu elegancia, tu confianza</span>
+        </div>
+        <div class="top-links">
+          <a href="#" class="top-link">
+            <i class="fas fa-phone"></i>
+            +1 (555) 123-4567
+          </a>
+          <a href="#" class="top-link">
+            <i class="fas fa-envelope"></i>
+            hola@boutiqueana.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <div class="main-header">
+    <div class="container">
+      <div class="header-content">
+        <!-- Logo -->
+        <div class="logo">
+          <a routerLink="/" class="logo-link">
+            <div class="logo-icon">
+              <i class="fas fa-gem"></i>
+            </div>
+            <div class="logo-text">
+              <h1>Boutique Ana</h1>
+              <p>Moda Femenina Elegante</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+          <div class="search-input-group">
+            <input type="text" placeholder="Buscar vestidos, blusas, faldas, accesorios..." class="search-input">
+            <button class="search-btn">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="quick-links">
+          <a href="#" class="quick-link" title="Ofertas Especiales">
+            <i class="fas fa-tag"></i>
+            <span>Ofertas</span>
+          </a>
+          <a href="#" class="quick-link" title="Nuevas Llegadas">
+            <i class="fas fa-sparkles"></i>
+            <span>Nuevas</span>
+          </a>
+          <a href="#" class="quick-link" title="Tendencia">
+            <i class="fas fa-fire"></i>
+            <span>Tendencia</span>
+          </a>
+        </div>
+
+        <!-- User Actions -->
+        <div class="user-actions">
+          <a routerLink="/wishlist" class="action-btn" title="Lista de Deseos">
+            <i class="fas fa-heart"></i>
+            <span class="action-count">0</span>
+          </a>
+          <a routerLink="/cart" class="action-btn" title="Carrito">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="action-count">0</span>
+          </a>
+          <a routerLink="/login" class="action-btn" title="Mi Cuenta">
+            <i class="fas fa-user"></i>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" (click)="toggleMenu()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navigation">
+    <div class="container">
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a routerLink="/" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link">
+            <i class="fas fa-female"></i>
+            Vestidos Elegantes
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-link">Vestidos de Noche</a>
+            <a href="#" class="dropdown-link">Vestidos de Día</a>
+            <a href="#" class="dropdown-link">Vestidos de Fiesta</a>
+            <a href="#" class="dropdown-link">Vestidos de Trabajo</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link">
+            <i class="fas fa-tshirt"></i>
+            Blusas y Tops
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-link">Blusas de Seda</a>
+            <a href="#" class="dropdown-link">Tops Casuales</a>
+            <a href="#" class="dropdown-link">Camisas Elegantes</a>
+            <a href="#" class="dropdown-link">Tops de Fiesta</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link">
+            <i class="fas fa-female"></i>
+            Faldas y Shorts
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-link">Faldas A-Line</a>
+            <a href="#" class="dropdown-link">Faldas Lápiz</a>
+            <a href="#" class="dropdown-link">Shorts Elegantes</a>
+            <a href="#" class="dropdown-link">Faldas Maxi</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link">
+            <i class="fas fa-vest"></i>
+            Chaquetas y Abrigos
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-link">Blazers Elegantes</a>
+            <a href="#" class="dropdown-link">Abrigos de Lujo</a>
+            <a href="#" class="dropdown-link">Chaquetas Casuales</a>
+            <a href="#" class="dropdown-link">Trench Coats</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link">
+            <i class="fas fa-gem"></i>
+            Accesorios
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-link">Joyería Fina</a>
+            <a href="#" class="dropdown-link">Bolsos de Lujo</a>
+            <a href="#" class="dropdown-link">Cinturones Elegantes</a>
+            <a href="#" class="dropdown-link">Bufandas de Seda</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link">
+            <i class="fas fa-shoe-prints"></i>
+            Zapatos y Bolsos
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-link">Zapatos de Tacón</a>
+            <a href="#" class="dropdown-link">Zapatos Planos</a>
+            <a href="#" class="dropdown-link">Bolsos de Mano</a>
+            <a href="#" class="dropdown-link">Bolsos de Hombro</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" [class.open]="isMenuOpen">
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-header">
+        <h3>Menú</h3>
+        <button class="close-btn" (click)="closeMenu()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <ul class="mobile-nav-menu">
+        <li><a routerLink="/" (click)="closeMenu()">Inicio</a></li>
+        <li><a routerLink="/catalog" (click)="closeMenu()">Catálogo</a></li>
+        <li><a routerLink="/cart" (click)="closeMenu()">Carrito</a></li>
+        <li><a routerLink="/wishlist" (click)="closeMenu()">Lista de Deseos</a></li>
+        <li><a routerLink="/login" (click)="closeMenu()">Iniciar Sesión</a></li>
+        <li><a routerLink="/register" (click)="closeMenu()">Registrarse</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
