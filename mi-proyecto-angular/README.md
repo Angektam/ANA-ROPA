@@ -150,3 +150,5 @@ Las contribuciones son bienvenidas. Por favor:
 ---
 
 💖 **Boutique Ana** - Tu estilo, tu elegancia, tu confianza ✨
+
+**🚀 Deploy Status**: GitHub Pages activado - https://angektam.github.io/boutique-ana/
