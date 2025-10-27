@@ -14,6 +14,10 @@ export interface Product {
   material: string;
   isNew?: boolean;
   isOnSale?: boolean;
+  isEcoFriendly?: boolean;
+  isVegan?: boolean;
+  isHandmade?: boolean;
+  isExclusive?: boolean;
   stock: number;
   rating: number;
   reviews: number;
@@ -51,6 +55,9 @@ export interface FilterOptions {
   size?: string[];
   color?: string[];
   brand?: string[];
+  occasion?: string[];
+  style?: string[];
+  material?: string[];
   sortBy?: 'price-asc' | 'price-desc' | 'name' | 'rating' | 'newest';
 }
 

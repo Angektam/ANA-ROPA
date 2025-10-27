@@ -5,8 +5,8 @@
       <div class="top-bar-content">
         <div class="top-bar-left">
           <span class="welcome-text">
-            <i class="fas fa-star"></i>
-            Bienvenido a Boutique Ana - Moda Elegante y Sofisticada
+            <i class="fas fa-heart"></i>
+            Bienvenida a Boutique Ana - Tu estilo, tu elegancia, tu confianza
           </span>
         </div>
         <div class="top-bar-right">
@@ -35,7 +35,7 @@
             </div>
             <div class="logo-text">
               <span class="logo-name">Boutique Ana</span>
-              <span class="logo-tagline">Moda Elegante</span>
+              <span class="logo-tagline">Moda Femenina Elegante</span>
             </div>
           </a>
         </div>
@@ -64,27 +64,31 @@
               <ul class="dropdown-menu" [class.show]="showCategoriesMenu">
                 <li><a routerLink="/catalog" class="dropdown-link">
                   <i class="fas fa-female"></i>
-                  Vestidos
+                  Vestidos Elegantes
                 </a></li>
                 <li><a routerLink="/catalog" class="dropdown-link">
                   <i class="fas fa-tshirt"></i>
-                  Blusas
-                </a></li>
-                <li><a routerLink="/catalog" class="dropdown-link">
-                  <i class="fas fa-user-tie"></i>
-                  Pantalones
+                  Blusas y Tops
                 </a></li>
                 <li><a routerLink="/catalog" class="dropdown-link">
                   <i class="fas fa-female"></i>
-                  Faldas
+                  Pantalones y Jeans
+                </a></li>
+                <li><a routerLink="/catalog" class="dropdown-link">
+                  <i class="fas fa-female"></i>
+                  Faldas y Shorts
                 </a></li>
                 <li><a routerLink="/catalog" class="dropdown-link">
                   <i class="fas fa-vest"></i>
-                  Chaquetas
+                  Chaquetas y Abrigos
                 </a></li>
                 <li><a routerLink="/catalog" class="dropdown-link">
                   <i class="fas fa-gem"></i>
-                  Accesorios
+                  Accesorios y Joyería
+                </a></li>
+                <li><a routerLink="/catalog" class="dropdown-link">
+                  <i class="fas fa-shoe-prints"></i>
+                  Zapatos y Bolsos
                 </a></li>
               </ul>
             </li>
@@ -108,11 +112,27 @@
           <!-- Search -->
           <div class="search-container">
             <div class="search-box">
-              <input type="text" placeholder="Buscar productos..." class="search-input">
+              <input type="text" placeholder="Buscar vestidos, blusas, faldas..." class="search-input">
               <button class="search-btn" type="button">
                 <i class="fas fa-search"></i>
               </button>
             </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="quick-links">
+            <a href="#" class="quick-link" title="Ofertas Especiales">
+              <i class="fas fa-tag"></i>
+              <span>Ofertas</span>
+            </a>
+            <a href="#" class="quick-link" title="Nuevas Llegadas">
+              <i class="fas fa-sparkles"></i>
+              <span>Nuevas</span>
+            </a>
+            <a href="#" class="quick-link" title="Tendencia">
+              <i class="fas fa-fire"></i>
+              <span>Tendencia</span>
+            </a>
           </div>
 
           <!-- User Account -->

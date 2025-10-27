@@ -4,10 +4,10 @@
     <div class="hero-content">
       <div class="hero-text">
         <h1 class="hero-title">
-          <span class="title-highlight">Catálogo</span> de Productos
+          <span class="title-highlight">Catálogo</span> de Moda Femenina
         </h1>
         <p class="hero-subtitle">
-          Descubre nuestra colección exclusiva de moda femenina, cuidadosamente seleccionada para ti
+          Descubre nuestra colección exclusiva de vestidos, blusas, faldas y accesorios, cuidadosamente seleccionados para realzar tu belleza natural
         </p>
         <div class="hero-stats">
           <div class="stat-item">
@@ -40,14 +40,14 @@
           <div class="search-icon">
             <i class="fas fa-search"></i>
           </div>
-          <input 
-            type="text" 
-            placeholder="Buscar productos, marcas, categorías..." 
-            [(ngModel)]="searchQuery"
-            (input)="onSearch(searchQuery)"
-            (keyup.enter)="onSearch(searchQuery)"
-            autocomplete="off"
-            class="search-input">
+            <input 
+              type="text" 
+              placeholder="Buscar vestidos, blusas, faldas, accesorios..." 
+              [(ngModel)]="searchQuery"
+              (input)="onSearch(searchQuery)"
+              (keyup.enter)="onSearch(searchQuery)"
+              autocomplete="off"
+              class="search-input">
           <button 
             *ngIf="searchQuery && searchQuery.trim()" 
             class="btn-clear-search" 
@@ -166,7 +166,7 @@
             </div>
             <h3 class="no-products-title">No se encontraron productos</h3>
             <p class="no-products-description">
-              Intenta ajustar tus filtros de búsqueda o explorar otras categorías.
+              Intenta ajustar tus filtros de búsqueda o explorar otras categorías de moda femenina.
             </p>
             <div class="no-products-actions">
               <button class="btn-primary" (click)="clearFilters()">

@@ -7,12 +7,12 @@
           <i class="fas fa-heart"></i>
           <span>Lista de Deseos</span>
         </div>
-        <h1 class="hero-title">Tu Selección de Favoritos</h1>
+        <h1 class="hero-title">Tu Lista de Deseos Femeninos</h1>
         <p class="hero-subtitle" *ngIf="wishlistItems.length > 0">
-          {{ getTotalItems() }} {{ getTotalItems() === 1 ? 'artículo' : 'artículos' }} guardados para más tarde
+          {{ getTotalItems() }} {{ getTotalItems() === 1 ? 'prenda' : 'prendas' }} guardadas para realzar tu estilo
         </p>
         <p class="hero-subtitle" *ngIf="wishlistItems.length === 0">
-          Guarda tus productos favoritos para comprarlos más tarde
+          Guarda tus prendas favoritas para crear el look perfecto
         </p>
       </div>
       <div class="hero-image">
@@ -42,7 +42,7 @@
         </div>
         <h2 class="empty-wishlist-title">Tu lista de deseos está vacía</h2>
         <p class="empty-wishlist-description">
-          ¡Explora nuestra colección y guarda tus productos favoritos!
+          ¡Explora nuestra colección de moda femenina y guarda tus prendas favoritas!
         </p>
         <div class="empty-wishlist-actions">
           <button class="btn-primary" (click)="goToCatalog()">
@@ -80,7 +80,7 @@
             Mi Lista de Deseos
           </h2>
           <div class="wishlist-stats">
-            <span class="items-count">{{ getTotalItems() }} {{ getTotalItems() === 1 ? 'artículo' : 'artículos' }}</span>
+            <span class="items-count">{{ getTotalItems() }} {{ getTotalItems() === 1 ? 'prenda' : 'prendas' }}</span>
             <span class="total-value">Valor total: ${{ getTotalValue() | number:'1.2-2' }}</span>
           </div>
         </div>

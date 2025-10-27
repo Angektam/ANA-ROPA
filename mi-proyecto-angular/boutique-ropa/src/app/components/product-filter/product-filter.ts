@@ -28,6 +28,9 @@ export class ProductFilter implements OnInit, OnChanges {
   sizes: string[] = [];
   colors: string[] = [];
   brands: string[] = [];
+  occasions: string[] = ['Casual', 'Trabajo', 'Fiesta', 'Boda', 'Cita', 'Vacaciones'];
+  styles: string[] = ['Elegante', 'Casual', 'Vintage', 'Moderno', 'Bohemio', 'Minimalista'];
+  materials: string[] = ['Algodón', 'Seda', 'Lino', 'Lana', 'Poliéster', 'Encaje', 'Cuero'];
 
   ngOnInit() {
     this.extractFilterOptions();
@@ -232,5 +235,77 @@ export class ProductFilter implements OnInit, OnChanges {
       }
       this.emitFilters();
     }
+  }
+
+  // Métodos para ocasiones
+  onOccasionChange(occasion: string, checked: boolean) {
+    if (!this.filters.occasion) {
+      this.filters.occasion = [];
+    }
+    
+    if (checked) {
+      this.filters.occasion.push(occasion);
+    } else {
+      this.filters.occasion = this.filters.occasion.filter((o: any) => o !== occasion);
+    }
+    
+    this.emitFilters();
+  }
+
+  onOccasionChangeEvent(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.onOccasionChange(target.value, target.checked);
+  }
+
+  isOccasionSelected(occasion: string): boolean {
+    return this.filters.occasion?.includes(occasion) || false;
+  }
+
+  // Métodos para estilos
+  onStyleChange(style: string, checked: boolean) {
+    if (!this.filters.style) {
+      this.filters.style = [];
+    }
+    
+    if (checked) {
+      this.filters.style.push(style);
+    } else {
+      this.filters.style = this.filters.style.filter((s: any) => s !== style);
+    }
+    
+    this.emitFilters();
+  }
+
+  onStyleChangeEvent(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.onStyleChange(target.value, target.checked);
+  }
+
+  isStyleSelected(style: string): boolean {
+    return this.filters.style?.includes(style) || false;
+  }
+
+  // Métodos para materiales
+  onMaterialChange(material: string, checked: boolean) {
+    if (!this.filters.material) {
+      this.filters.material = [];
+    }
+    
+    if (checked) {
+      this.filters.material.push(material);
+    } else {
+      this.filters.material = this.filters.material.filter((m: any) => m !== material);
+    }
+    
+    this.emitFilters();
+  }
+
+  onMaterialChangeEvent(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.onMaterialChange(target.value, target.checked);
+  }
+
+  isMaterialSelected(material: string): boolean {
+    return this.filters.material?.includes(material) || false;
   }
 }

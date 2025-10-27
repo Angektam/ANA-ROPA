@@ -7,12 +7,12 @@
           <i class="fas fa-shopping-cart"></i>
           <span>Carrito de Compras</span>
         </div>
-        <h1 class="hero-title">Tu Selección Perfecta</h1>
+        <h1 class="hero-title">Tu Selección de Moda Femenina</h1>
         <p class="hero-subtitle" *ngIf="itemsCount > 0">
-          {{ itemsCount }} {{ itemsCount === 1 ? 'artículo' : 'artículos' }} cuidadosamente seleccionados
+          {{ itemsCount }} {{ itemsCount === 1 ? 'prenda' : 'prendas' }} cuidadosamente seleccionadas para realzar tu belleza
         </p>
         <p class="hero-subtitle" *ngIf="itemsCount === 0">
-          Descubre nuestra colección y encuentra las prendas perfectas para ti
+          Descubre nuestra colección de moda femenina y encuentra las prendas perfectas para ti
         </p>
       </div>
       <div class="hero-image">
@@ -32,7 +32,7 @@
         </div>
         <h2 class="empty-cart-title">Tu carrito está vacío</h2>
         <p class="empty-cart-description">
-          ¡Explora nuestra colección y encuentra las prendas perfectas para ti!
+          ¡Explora nuestra colección de moda femenina y encuentra las prendas perfectas para realzar tu estilo!
         </p>
         <div class="empty-cart-actions">
           <a routerLink="/catalog" class="btn-primary">
@@ -68,10 +68,10 @@
           <div class="cart-items-header">
             <h2 class="items-title">
               <i class="fas fa-shopping-bag"></i>
-              Productos en tu carrito
+              Prendas en tu carrito
             </h2>
             <div class="items-count">
-              {{ itemsCount }} {{ itemsCount === 1 ? 'artículo' : 'artículos' }}
+              {{ itemsCount }} {{ itemsCount === 1 ? 'prenda' : 'prendas' }}
             </div>
           </div>
           
@@ -184,7 +184,7 @@
             <div class="summary-row">
               <div class="row-label">
                 <i class="fas fa-shopping-bag"></i>
-                <span>Subtotal ({{ itemsCount }} {{ itemsCount === 1 ? 'artículo' : 'artículos' }})</span>
+                <span>Subtotal ({{ itemsCount }} {{ itemsCount === 1 ? 'prenda' : 'prendas' }})</span>
               </div>
               <div class="row-value">${{ total | number:'1.2-2' }}</div>
             </div>
