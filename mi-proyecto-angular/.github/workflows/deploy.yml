@@ -33,20 +33,13 @@ jobs:
       - name: Build Angular app
         run: npm run build:gh-pages
 
-      - name: Move files to root
-        run: |
-          mkdir -p dist/boutique-ana-root
-          cp -r dist/boutique-ana/browser/* dist/boutique-ana-root/
-          # Fix base-href in index.html
-          sed -i 's|<base href="/">|<base href="/boutique-ana/">|g' dist/boutique-ana-root/index.html
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist/boutique-ana-root'
+          path: './dist/boutique-ana/browser'
 
   deploy:
     environment:
