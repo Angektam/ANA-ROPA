@@ -1,140 +1,77 @@
 # 💖 Boutique Ana - Moda Femenina Elegante
 
-**Tu estilo, tu elegancia, tu confianza** ✨
+Una boutique de moda femenina moderna y elegante construida con Angular 18.
 
-Una boutique online especializada en moda femenina de lujo, diseñada para realzar la belleza y confianza de la mujer moderna.
+## ✨ Características
 
-## 🌟 Características
+- 🎨 **Diseño femenino y elegante** - Colores suaves y tipografía sofisticada
+- 🛍️ **Catálogo de productos** - Vestidos, blusas, faldas, chaquetas y accesorios
+- 🛒 **Carrito de compras** - Funcionalidad completa de e-commerce
+- ❤️ **Lista de deseos** - Guarda tus productos favoritos
+- 🔍 **Filtros avanzados** - Encuentra exactamente lo que buscas
+- 📱 **Responsive** - Perfecto en todos los dispositivos
+- ⚡ **Rápido y moderno** - Construido con las últimas tecnologías
 
-- **Diseño 100% femenino** con paleta de colores elegante
-- **Interfaz moderna y responsive** para todos los dispositivos
-- **Navegación intuitiva** entre categorías de moda
-- **Formularios de autenticación** (Login/Register)
-- **Secciones temáticas**: Hero, Featured, Categories, Testimonials
-- **Elementos decorativos** con animaciones suaves
-- **Tipografía elegante** con Google Fonts
+## 🚀 Demo en Vivo
 
-## 🛍️ Páginas Disponibles
+**GitHub Pages**: https://angektam.github.io/boutique-ana/
 
-- **Inicio** - Presentación de la boutique y productos destacados
-- **Catálogo** - Exploración de productos por categorías
-- **Carrito** - Gestión de compras
-- **Lista de Deseos** - Productos favoritos
-- **Checkout** - Proceso de compra
-- **Login/Register** - Autenticación de usuarios
+## 🛠️ Tecnologías Utilizadas
 
-## 🎨 Diseño
-
-- **Colores principales**: Rosa (#e91e63), Púrpura (#9c27b0), Coral (#ff6b9d)
-- **Tipografías**: Poppins (sans-serif), Playfair Display (serif)
-- **Estilo**: Elegante, sofisticado, femenino
-- **Responsive**: Mobile-first design
-
-## 🚀 Tecnologías
-
-- **Angular 17** - Framework principal
+- **Angular 18** - Framework principal
 - **TypeScript** - Lenguaje de programación
-- **SCSS** - Preprocesador CSS
+- **SCSS** - Estilos avanzados
 - **HTML5** - Estructura semántica
 - **Font Awesome** - Iconografía
-- **Google Fonts** - Tipografías
+- **Google Fonts** - Tipografía elegante
 
 ## 📦 Instalación
 
-```bash
-# Clonar el repositorio
-git clone https://github.com/Angektam/boutique-ana.git
+1. **Clona el repositorio**:
+   ```bash
+   git clone https://github.com/Angektam/boutique-ana.git
+   cd boutique-ana
+   ```
 
-# Navegar al directorio
-cd boutique-ana
+2. **Instala las dependencias**:
+   ```bash
+   npm install
+   ```
 
-# Instalar dependencias
-npm install
+3. **Ejecuta la aplicación**:
+   ```bash
+   npm start
+   ```
 
-# Ejecutar en desarrollo
-npm start
+4. **Abre tu navegador**:
+   ```
+   http://localhost:4200
+   ```
 
-# Build para producción
-npm run build:gh-pages
-```
+## 🏗️ Scripts Disponibles
 
-## 🌐 Deploy
+- `npm start` - Ejecuta la aplicación en modo desarrollo
+- `npm run build` - Construye la aplicación para producción
+- `npm run build:gh-pages` - Construye para GitHub Pages
+- `npm test` - Ejecuta las pruebas unitarias
 
-### GitHub Pages
-El proyecto está configurado para deploy automático en GitHub Pages:
-- URL: `https://angektam.github.io/boutique-ana/`
-- Se actualiza automáticamente con cada push a `main`
+## 🎨 Paleta de Colores
 
-### Netlify
-```bash
-# Deploy manual a Netlify
-npm run build:gh-pages
-npx netlify deploy --dir=dist/boutique-ana --prod
-```
-
-## 📁 Estructura del Proyecto
-
-```
-boutique-ana/
-├── src/
-│   ├── app/
-│   │   ├── components/     # Componentes reutilizables
-│   │   ├── pages/         # Páginas principales
-│   │   ├── models/        # Interfaces TypeScript
-│   │   └── services/      # Servicios Angular
-│   ├── styles.scss       # Estilos globales
-│   └── index.html        # Página principal
-├── dist/                 # Build de producción
-├── .github/workflows/    # GitHub Actions
-├── netlify.toml         # Configuración Netlify
-└── package.json         # Dependencias
-```
-
-## 🎯 Funcionalidades
-
-- ✅ **Navegación completa** entre páginas
-- ✅ **Diseño responsive** para móviles y desktop
-- ✅ **Formularios funcionales** de autenticación
-- ✅ **Animaciones suaves** y efectos visuales
-- ✅ **Iconografía consistente** con Font Awesome
-- ✅ **Tipografía elegante** con Google Fonts
-- ✅ **Paleta de colores femenina** y sofisticada
-
-## 🚀 Scripts Disponibles
-
-- `npm start` - Servidor de desarrollo
-- `npm run build` - Build de producción
-- `npm run build:gh-pages` - Build para GitHub Pages
-- `npm test` - Ejecutar tests
-- `npm run dev` - Desarrollo con base de datos mock
+- **Rosa Principal**: #E91E63
+- **Rosa Suave**: #F8BBD9
+- **Dorado**: #FFD700
+- **Blanco**: #FFFFFF
+- **Gris Suave**: #F5F5F5
 
 ## 📱 Responsive Design
 
-- **Mobile First**: Optimizado para dispositivos móviles
-- **Breakpoints**: 480px, 768px, 1024px, 1200px
-- **Grid System**: CSS Grid y Flexbox
-- **Typography**: Escalas responsivas
+La aplicación está optimizada para:
+- 📱 Móviles (320px+)
+- 📱 Tablets (768px+)
+- 💻 Desktop (1024px+)
+- 🖥️ Pantallas grandes (1440px+)
 
-## 🎨 Personalización
-
-El diseño está completamente personalizable a través de variables CSS en `src/styles.scss`:
-
-```scss
-:root {
-  --primary-color: #e91e63;    // Rosa principal
-  --secondary-color: #9c27b0;  // Púrpura secundario
-  --accent-color: #ff6b9d;     // Coral de acento
-  // ... más variables
-}
-```
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
-## 👥 Contribuciones
-
-Las contribuciones son bienvenidas. Por favor:
+## 🤝 Contribuir
 
 1. Fork el proyecto
 2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
@@ -142,13 +79,14 @@ Las contribuciones son bienvenidas. Por favor:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 📞 Contacto
+## 📄 Licencia
 
-- **GitHub**: [@Angektam](https://github.com/Angektam)
-- **Proyecto**: [Boutique Ana](https://github.com/Angektam/boutique-ana)
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 👩‍💻 Desarrollado por
+
+**Ana** - Desarrolladora Frontend
 
 ---
 
 💖 **Boutique Ana** - Tu estilo, tu elegancia, tu confianza ✨
-
-**🚀 Deploy Status**: GitHub Pages activado - https://angektam.github.io/boutique-ana/
