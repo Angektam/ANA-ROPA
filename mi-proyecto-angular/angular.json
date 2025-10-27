@@ -49,6 +49,10 @@
               ],
               "outputHashing": "all"
             },
+            "github-pages": {
+              "baseHref": "/boutique-ana/",
+              "outputHashing": "all"
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
