@@ -37,7 +37,7 @@
     </div>
     
     <div class="products-grid">
-      <div class="product-card" *ngFor="let product of featuredProducts">
+      <div class="product-card" *ngFor="let product of featuredProducts" (click)="onProductClick(product)">
         <div class="product-image">
           <img [src]="product.image" [alt]="product.name">
           <div class="product-badges">
@@ -76,13 +76,13 @@
     </div>
     
     <div class="categories-grid">
-      <div class="category-card" *ngFor="let category of categories">
+      <div class="category-card" *ngFor="let category of categories" (click)="onCategoryClick(category.name)">
         <div class="category-icon">
           <i [class]="category.icon"></i>
         </div>
         <h3>{{ category.name }}</h3>
         <p>{{ category.count }}+ productos</p>
-        <a routerLink="/catalog" class="category-link">
+        <a routerLink="/catalog" class="category-link" (click)="$event.stopPropagation()">
           <i class="fas fa-arrow-right"></i>
         </a>
       </div>
@@ -170,14 +170,18 @@
           ofertas exclusivas y consejos de estilo personalizados.
         </p>
       </div>
-      <div class="newsletter-form">
-        <div class="form-group">
-          <input type="email" placeholder="Tu dirección de email" class="form-input">
-          <button class="btn btn-primary">
-            <i class="fas fa-paper-plane"></i>
-            Suscribirse
-          </button>
-        </div>
+        <div class="newsletter-form">
+          <div class="form-group">
+            <input type="email" 
+                   placeholder="Tu dirección de email" 
+                   class="form-input"
+                   [(ngModel)]="newsletterEmail"
+                   (keyup.enter)="onNewsletterSubmit()">
+            <button class="btn btn-primary" (click)="onNewsletterSubmit()">
+              <i class="fas fa-paper-plane"></i>
+              Suscribirse
+            </button>
+          </div>
         <p class="newsletter-note">
           <i class="fas fa-lock"></i>
           Respetamos tu privacidad. Sin spam.

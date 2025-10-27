@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   template: `
     <section class="auth-section">
       <div class="container">
@@ -18,14 +19,26 @@ import { RouterModule } from '@angular/router';
           </div>
           <h2 class="auth-title">¡Bienvenida de vuelta!</h2>
           <p class="auth-subtitle">Inicia sesión en tu cuenta para acceder a tu moda femenina favorita</p>
-          <form class="auth-form">
+          <form class="auth-form" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" class="form-input" placeholder="tu@email.com">
+              <input type="email" 
+                     id="email" 
+                     class="form-input" 
+                     placeholder="tu@email.com"
+                     [(ngModel)]="email"
+                     name="email"
+                     required>
             </div>
             <div class="form-group">
               <label for="password">Contraseña</label>
-              <input type="password" id="password" class="form-input" placeholder="Tu contraseña">
+              <input type="password" 
+                     id="password" 
+                     class="form-input" 
+                     placeholder="Tu contraseña"
+                     [(ngModel)]="password"
+                     name="password"
+                     required>
             </div>
             <button type="submit" class="btn btn-primary btn-full">Iniciar Sesión</button>
           </form>
@@ -130,4 +143,17 @@ import { RouterModule } from '@angular/router';
     }
   `]
 })
-export class LoginComponent {}
+export class LoginComponent {
+  email = '';
+  password = '';
+
+  onSubmit() {
+    if (this.email.trim() && this.password.trim()) {
+      console.log('Iniciando sesión con:', this.email);
+      // Aquí implementarías la lógica de autenticación
+      alert('¡Bienvenida de vuelta! Iniciando sesión...');
+    } else {
+      alert('Por favor, completa todos los campos.');
+    }
+  }
+}

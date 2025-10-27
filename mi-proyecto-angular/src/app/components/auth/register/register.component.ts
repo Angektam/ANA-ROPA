@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   template: `
     <section class="auth-section">
       <div class="container">
@@ -18,22 +19,46 @@ import { RouterModule } from '@angular/router';
           </div>
           <h2 class="auth-title">¡Únete a nuestra comunidad!</h2>
           <p class="auth-subtitle">Crea tu cuenta y descubre la moda femenina más elegante</p>
-          <form class="auth-form">
+          <form class="auth-form" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="name">Nombre completo</label>
-              <input type="text" id="name" class="form-input" placeholder="Tu nombre completo">
+              <input type="text" 
+                     id="name" 
+                     class="form-input" 
+                     placeholder="Tu nombre completo"
+                     [(ngModel)]="name"
+                     name="name"
+                     required>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" class="form-input" placeholder="tu@email.com">
+              <input type="email" 
+                     id="email" 
+                     class="form-input" 
+                     placeholder="tu@email.com"
+                     [(ngModel)]="email"
+                     name="email"
+                     required>
             </div>
             <div class="form-group">
               <label for="password">Contraseña</label>
-              <input type="password" id="password" class="form-input" placeholder="Tu contraseña">
+              <input type="password" 
+                     id="password" 
+                     class="form-input" 
+                     placeholder="Tu contraseña"
+                     [(ngModel)]="password"
+                     name="password"
+                     required>
             </div>
             <div class="form-group">
               <label for="confirmPassword">Confirmar contraseña</label>
-              <input type="password" id="confirmPassword" class="form-input" placeholder="Confirma tu contraseña">
+              <input type="password" 
+                     id="confirmPassword" 
+                     class="form-input" 
+                     placeholder="Confirma tu contraseña"
+                     [(ngModel)]="confirmPassword"
+                     name="confirmPassword"
+                     required>
             </div>
             <button type="submit" class="btn btn-primary btn-full">Crear Cuenta</button>
           </form>
@@ -138,4 +163,23 @@ import { RouterModule } from '@angular/router';
     }
   `]
 })
-export class RegisterComponent {}
+export class RegisterComponent {
+  name = '';
+  email = '';
+  password = '';
+  confirmPassword = '';
+
+  onSubmit() {
+    if (this.name.trim() && this.email.trim() && this.password.trim() && this.confirmPassword.trim()) {
+      if (this.password === this.confirmPassword) {
+        console.log('Registrando usuario:', { name: this.name, email: this.email });
+        // Aquí implementarías la lógica de registro
+        alert('¡Bienvenida a Boutique Ana! Tu cuenta ha sido creada exitosamente.');
+      } else {
+        alert('Las contraseñas no coinciden.');
+      }
+    } else {
+      alert('Por favor, completa todos los campos.');
+    }
+  }
+}
