@@ -12,15 +12,7 @@ export class ToastContainerComponent {
   toasts: any[] = [];
 
   constructor() {
-    // Simular algunos toasts para demostración
-    this.toasts = [
-      {
-        id: 1,
-        type: 'success',
-        title: '¡Bienvenida!',
-        message: 'Has iniciado sesión correctamente',
-        icon: 'fas fa-check-circle'
-      }
-    ];
+    // Inicializar sin toasts - solo mostrar cuando sea necesario
+    this.toasts = [];
   }
 }
