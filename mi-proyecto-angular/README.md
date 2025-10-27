@@ -16,6 +16,8 @@ Una boutique de moda femenina moderna y elegante construida con Angular 18.
 
 **GitHub Pages**: https://angektam.github.io/boutique-ana/
 
+**Última actualización**: 27 de octubre de 2025
+
 ## 🛠️ Tecnologías Utilizadas
 
 - **Angular 18** - Framework principal
