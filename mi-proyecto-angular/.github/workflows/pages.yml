@@ -33,6 +33,14 @@ jobs:
       - name: Build Angular app
         run: npm run build:gh-pages
 
+      - name: Create 404.html
+        run: |
+          cp dist/boutique-ana/browser/index.html dist/boutique-ana/browser/404.html
+
+      - name: Create .nojekyll
+        run: |
+          touch dist/boutique-ana/browser/.nojekyll
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
