@@ -147,6 +147,11 @@ export class HomeComponent {
     // Aquí implementarías la navegación al detalle del producto
   }
 
+  onExploreCollection() {
+    console.log('Navegando al catálogo...');
+    // Esta función se puede usar si necesitas lógica adicional antes de navegar
+  }
+
   onAddToCart(product: any) {
     this.cartService.addToCart(product);
     alert(`¡${product.name} agregado al carrito!`);
