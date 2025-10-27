@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -25,14 +26,11 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-          cache-dependency-path: boutique-ropa/package-lock.json
           
       - name: Install dependencies
-        working-directory: boutique-ropa
         run: npm ci
         
-      - name: Build
-        working-directory: boutique-ropa
+      - name: Build Angular app
         run: npm run build:gh-pages
         
       - name: Setup Pages
@@ -41,7 +39,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: boutique-ropa/dist/boutique-ropa/browser
+          path: dist/boutique-ana
 
   deploy:
     environment:
